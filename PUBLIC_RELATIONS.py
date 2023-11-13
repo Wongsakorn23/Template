@@ -48,14 +48,14 @@ class TestTest4():
 
       self.vars["window_handles"] = self.driver.window_handles
       try:
-        self.driver.find_element(By.CSS_SELECTOR, ".col-lg-4:nth-child(1) > .card div").click()
+        #ใส่โค้ดตำแหน่งที่หามาจาก IDE
       except NoSuchElementException:
         time.sleep(1.5)
       if (len(self.driver.window_handles) == 2):
         self.vars["win_new"] = self.wait_for_window(2000)
         self.driver.switch_to.window(self.vars["win_new"])
         self.driver.switch_to.frame(0)
-        #ใส่โค้ดตำแหน่งที่หามาจาก IDE
+        elements = self.driver.find_elements(By.CSS_SELECTOR, "table:nth-child(2)")
         assert len(elements) > 0
         time.sleep(1)
         self.driver.close()
@@ -65,21 +65,21 @@ class TestTest4():
 
       self.vars["window_handles"] = self.driver.window_handles
       try:
-        self.driver.find_element(By.CSS_SELECTOR, ".col-lg-4:nth-child(2) > .card div").click()
+        #ใส่โค้ดตำแหน่งที่หามาจาก IDE
       except NoSuchElementException:
         time.sleep(1.5)
       if (len(self.driver.window_handles) == 2):
         self.vars["win_new"] = self.wait_for_window(2000)
         self.driver.switch_to.window(self.vars["win_new"])
         self.driver.switch_to.frame(0)
-        #ใส่โค้ดตำแหน่งที่หามาจาก IDE
+        elements = self.driver.find_elements(By.CSS_SELECTOR, "table:nth-child(2)")
         assert len(elements) > 0
         time.sleep(1)
         self.driver.close()
       pass
       self.driver.switch_to.window(self.vars["window_handles"][0])
       time.sleep(1.5)
-
+      
     except Exception as e:
       # If an assertion error occurs, capture a screenshot and attach it to the Allure report
       allure.attach(self.driver.get_screenshot_as_png(), name="Error Screenshot", attachment_type=allure.attachment_type.PNG)
